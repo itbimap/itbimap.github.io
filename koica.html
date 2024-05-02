@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/9731502187.js" crossorigin="anonymous"></script>
+    <title>iMAP</title>
+    <link rel="shortcut icon" href="images/logofavicon.png" type="x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrap.com/font-awesome/6.4.2/css/font-awesome.min.css">
+</head>
+<body>
+<!-- HEADER -->
+    <section class="header" id="home">
+        <nav>
+            <a href="index.html"><img class="logoatas" src="images/logokecil.png" alt="logo" width="72" height="40"></a>
+            <div class="hamburger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#buildings">Buildings</a></li>
+            </ul>
+        </nav>
+        <div class="wrapper">
+            <div id="search-container">
+                <a href="labtekv.html" class="labtek-btn">LABTEK V</a>
+                <a class="koica-btn active">KOICA</a><br>
+                <input type="search" id="search-input" placeholder="Find a Room"/>
+            </div>
+            <div id="buttons">
+                <button class="button-value" data-filter="Ruang Umum">Ruang Umum</button>
+                <button class="button-value" data-filter="Ruang Kelas">Ruang Kelas</button>
+                <button class="button-value" data-filter="Mushola">Mushola</button>
+                <button class="button-value" data-filter="Himpunan">Himpunan</button>
+                <button class="button-value" data-filter="Lift">Lift</button>
+                <button class="button-value" data-filter="Toilet">Toilet</button>
+                <button class="button-value" data-filter="Kantin">Kantin</button>
+                <button class="button-value" data-filter="Ruang Penelitian">Ruang Penelitian</button>
+                <button class="button-value" data-filter="Lab">Lab</button>
+                <button class="button-value" data-filter="Office">Office</button>
+                <button class="button-value" data-filter="Ruang Alat">Ruang Alat</button>
+                <button class="button-value" data-filter="Perpustakaan">Perpustakaan</button>
+                <button class="button-value" data-filter="Ruang Mahasiswa">Ruang Mahasiswa</button>
+                <button class="button-value" data-filter="Co-Working Space">Co-Working Space</button>
+            </div>
+            <div id="rooms"></div>
+        </div>
+    </section>
+    
+
+
+<!-- FOOTER -->
+    <section class="footer">
+        <h4>About Us</h4>
+        <p>Kami dari Milestone Kelompok 7 ingin membantu mahasiswa baru untuk dengan mudah menemukan dan mengakses berbagai fasilitas di kampus, seperti ruang kelas, toilet, musholla, dan lain-lain, guna meningkatkan efisiensi waktu dan penggunaan fasilitas.</p>
+        <p>Made with <i class="fa-regular fa-heart"></i> by Kelompok 07</p>
+    </section>
+    <script>
+        const building = "koica";
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>
