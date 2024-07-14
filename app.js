@@ -1,16 +1,20 @@
-const hamburger = document.querySelector(".hamburger");
-const navLinks = document.querySelector(".nav-links");
-const links = document.querySelectorAll(".nav-links li");
-const searchInput = document.querySelector("#search-input");
-const searchFilter = document.querySelectorAll(".button-value");
+const s = (q) => {return document.querySelector(q)};
+const a = (q) => {return document.querySelectorAll(q)};
+
+$.fancybox.defaults.hash = false;
+const searchFilter = a(".button-value");
+var building = (window.location.hash.length > 0 ? window.location.hash.slice(1) : "labtekv");
+if (!(window.location.hash.slice(1) == "labtekv" || window.location.hash.slice(1) == "koica")) {
+    window.location.hash = "#labtekv";
+}
 var activeFilter = "";
 
-hamburger.addEventListener('click', ()=>{
-    navLinks.classList.toggle("open");
-    links.forEach(link => {
+s(".hamburger").addEventListener('click', ()=>{
+    s(".nav-links").classList.toggle("open");
+    a(".nav-links li").forEach(link => {
         link.classList.toggle("fade");
     });
-    hamburger.classList.toggle("toggle");
+    s(".hamburger").classList.toggle("toggle");
 });
 
 let rooms = {
@@ -20,7 +24,7 @@ let rooms = {
             category: "Ruang Umum",
             location: "Lantai 1",
             description: "Kantor FTI",
-            image: "images/fti.png",
+            image: "fti.png",
 
         },
         {
@@ -28,483 +32,483 @@ let rooms = {
             category: "Ruang Kelas",
             location: "Lantai 1",
             description: "Ruang kuliah FTMD",
-            image: "images/ftmd4108.png",
+            image: "ftmd4108.png",
         },
         {
             roomName: "Ruang 9306",
             category: "Ruang Kelas",
             location: "Lantai 1",
             description: "Tempat untuk melaksanakan pertemuan kuliah",
-            image: "images/9306.png",
+            image: "9306.png",
         },
         {
             roomName: "Mushola",
             category: "Mushola",
             location: "Lantai 1",
             description: "Tempat beribadah bagi umat muslim",
-            image: "images/mushola.png",
+            image: "mushola.png",
         },
         {
             roomName: "Sekretariat HMIF",
             category: "Himpunan",
             location: "Lantai 1",
             description: "Ruang untuk mahasiswa HMIF berkumpul",
-            image: "images/sekrehmif.png",
+            image: "sekrehmif.png",
         },
         {
             roomName: "Ruang 9315",
             category: "Ruang Kelas",
             location: "Lantai 1",
             description: "Tempat untuk melaksanakan pertemuan kuliah",
-            image: "images/9315.png",
+            image: "9315.png",
         },
         {
             roomName: "Lift",
             category: "Lift",
             location: "Lantai 1",
             description: "Sarana berpindah lantai",
-            image: "images/lift.jpg",
+            image: "lift.jpg",
         },
         {
             roomName: "Ruang 7601",
             category: "Ruang Kelas",
             location: "Lantai 1",
             description: "Tempat untuk melaksanakan pertemuan kuliah",
-            image: "images/7601.png",
+            image: "7601.png",
         },
         {
             roomName: "Toilet",
             category: "Toilet",
             location: "Lantai 1",
             description: "Tempat buang air, mencuci tangan, dan mencuci muka",
-            image: "images/toiletw.jpg",
+            image: "toiletw.jpg",
         },
         {
             roomName: "Ruang 9301",
             category: "Ruang Kelas",
             location: "Lantai 1",
             description: "Tempat untuk melaksanakan pertemuan kuliah",
-            image: "images/9301.jpg",
+            image: "9301.jpg",
         },
         {
             roomName: "Kantin Labtek 5",
             category: "Kantin",
             location: "Lantai 1",
             description: "Tempat beristirahat, membeli makanan, dan membeli minuman",
-            image: "images/kantinlabtek5.jpg",
+            image: "kantinlabtek5.jpg",
         },
         {
             roomName: "Ruang 9303",
             category: "Ruang Kelas",
             location: "Lantai 1",
             description: "Tempat untuk melaksanakan pertemuan kuliah",
-            image: "images/9303.jpg",
+            image: "9303.jpg",
         },
         {
             roomName: "Ruang 9304",
             category: "Ruang Kelas",
             location: "Lantai 1",
             description: "Tempat untuk melaksanakan pertemuan kuliah",
-            image: "images/9304.jpg",
+            image: "9304.jpg",
         },
         {
             roomName: "Ruang 9305",
             category: "Ruang Kelas",
             location: "Lantai 1",
             description: "Tempat untuk melaksanakan pertemuan kuliah",
-            image: "images/9305.jpg",
+            image: "9305.jpg",
         },
         {
             roomName: "Ruang Petugas Kelas",
             category: "Ruang Umum",
             location: "Lantai 1",
             description: "-",
-            image: "images/ruangpetugaskelas.jpg",
+            image: "ruangpetugaskelas.jpg",
         },
         {
             roomName: "Lift",
             category: "Lift",
             location: "Lantai 2",
             description: "Sarana berpindah lantai",
-            image: "images/glift2.png",
+            image: "glift2.png",
         },
         {
             roomName: "Ruang Penelitian",
             category: "Ruang Penelitian",
             location: "Lantai 2",
             description: "Tempat kegiatan penelitian",
-            image: "images/gruangpenelitian2.jpg",
+            image: "gruangpenelitian2.jpg",
         },
         {
             roomName: "Ruang Seminar",
             category: "Ruang Kelas",
             location: "Lantai 2",
             description: "Tempat untuk melaksanakan pertemuan kuliah",
-            image: "images/gruangseminar2.png",
+            image: "gruangseminar2.png",
         },
         {
             roomName: "Lab Programming Basis Data",
             category: "Lab",
             location: "Lantai 2",
             description: "Tempat untuk kegiatan programming basis data",
-            image: "images/glabprogrammingbasdat2.jpg",
+            image: "glabprogrammingbasdat2.jpg",
         },
         {
             roomName: "Ruang Akademik STEI",
             category: "Office",
             location: "Lantai 2",
             description: "Tempat mengurus seluruh kegiatan akademik",
-            image: "images/gruangakademikstei2.jpg",
+            image: "gruangakademikstei2.jpg",
         },
         {
             roomName: "Lab RPL",
             category: "Lab",
             location: "Lantai 2",
             description: "Tempat melakukan Rekayasa Perangkat Lunak",
-            image: "images/glabrpl2.jpg",
+            image: "glabrpl2.jpg",
         },
         {
             roomName: "Lab Komputer",
             category: "Lab",
             location: "Lantai 2",
             description: "Tempat untuk riset komputer",
-            image: "images/glabkomputer2.jpg",
+            image: "glabkomputer2.jpg",
         },
         {
             roomName: "Ruang Pertemuan",
             category: "Ruang Umum",
             location: "Lantai 2",
             description: "Tempat diskusi civitas STEI",
-            image: "images/gruangpertemuan2.jpg",
+            image: "gruangpertemuan2.jpg",
         },
         {
             roomName: "Ruang Rapat Dekan (Kantor Ketua Prodi)",
             category: "Office",
             location: "Lantai 2",
             description: "Tempat dekan STEI melakukan rapat ataupun diskusi akademik",
-            image: "images/gruangrapatdekan2.jpg",
+            image: "gruangrapatdekan2.jpg",
         },
         {
             roomName: "Ruang Arsip",
             category: "Ruang Alat",
             location: "Lantai 2",
             description: "Tempat untuk menyimpan arsip-arsip perkuliahan tahun-tahun sebelumnya",
-            image: "images/gruangarsip2.jpg",
+            image: "gruangarsip2.jpg",
         },
         {
             roomName: "Gudang",
             category: "Ruang Alat",
             location: "Lantai 2",
             description: "Tempat untuk menyimpan arsip-arsip perkuliahan tahun-tahun sebelumnya",
-            image: "images/ggudang2.jpg",
+            image: "ggudang2.jpg",
         },
         {
             roomName: "Tata Usaha (TU)",
             category: "Office",
             location: "Lantai 2",
             description: "Tempat untuk melakukan aktivitas administrasi dan tata usaha",
-            image: "images/gtu2.jpg",
+            image: "gtu2.jpg",
         },
         {
             roomName: "Lab Basis Data",
             category: "Lab",
             location: "Lantai 2",
             description: "Tempat untuk Mahasiswa melakukan praktikum",
-            image: "images/glabbasdat2.png",
+            image: "glabbasdat2.png",
         },
         {
             roomName: "Ruang 7602",
             category: "Ruang Kelas",
             location: "Lantai 3",
             description: "Tempat untuk melaksanakan pertemuan kuliah",
-            image: "images/7602.png",
+            image: "7602.png",
         },
         {
             roomName: "Perpustakaan",
             category: "Perpustakaan",
             location: "Lantai 3",
             description: "Tempat untuk membaca dan meminjam buku",
-            image: "images/gperpustakaan3.png",
+            image: "gperpustakaan3.png",
         },
         {
             roomName: "Ruang 7603",
             category: "Ruang Kelas",
             location: "Lantai 3",
             description: "Tempat untuk melaksanakan pertemuan kuliah",
-            image: "images/g7603.png",
+            image: "g7603.png",
         },
         {
             roomName: "Ruang 7604",
             category: "Ruang Kelas",
             location: "Lantai 3",
             description: "Tempat untuk melaksanakan pertemuan kuliah",
-            image: "images/g7604.png",
+            image: "g7604.png",
         },
         {
             roomName: "Ruang 7605",
             category: "Ruang Kelas",
             location: "Lantai 3",
             description: "Tempat untuk melaksanakan pertemuan kuliah",
-            image: "images/g7605.png",
+            image: "g7605.png",
         },
         {
             roomName: "Ruang Rapat",
             category: "Ruang Umum",
             location: "Lantai 3",
             description: "Tempat untuk melaksanakan rapat",
-            image: "images/gruangrapat3.jpg",
+            image: "gruangrapat3.jpg",
         },
         {
             roomName: "Ruang Server",
             category: "Ruang Alat",
             location: "Lantai 3",
             description: "Tempat menyimpan server",
-            image: "images/gruangserver3.jpg",
+            image: "gruangserver3.jpg",
         },
         {
             roomName: "Ruang OSSC",
             category: "Ruang Umum",
             location: "Lantai 3",
             description: "-",
-            image: "images/gruangossc3.jpg",
+            image: "gruangossc3.jpg",
         },
         {
             roomName: "Ruang Dosen",
             category: "Office",
             location: "Lantai 3",
             description: "Tempat dosen bekerja",
-            image: "images/gruangdosen3.jpg",
+            image: "gruangdosen3.jpg",
         },
         {
             roomName: "Ruang SDM",
             category: "Ruang Umum",
             location: "Lantai 3",
             description: "-",
-            image: "images/gruangsdm3.jpg",
+            image: "gruangsdm3.jpg",
         },
         {
             roomName: "Ruang Penelitian Flu Burung",
             category: "Ruang Penelitian",
             location: "Lantai 3",
             description: "Tempat melakukan penelitian",
-            image: "images/gruangpenelitianfluburung3.jpg",
+            image: "gruangpenelitianfluburung3.jpg",
         },
         {
             roomName: "Ruang Penelitian",
             category: "Ruang Penelitian",
             location: "Lantai 3",
             description: "Tempat melakukan penelitian",
-            image: "images/gruangpenelitian3.jpg",
+            image: "gruangpenelitian3.jpg",
         },
         {
             roomName: "Bengkel",
             category: "Ruang Alat",
             location: "Lantai 3",
             description: "-",
-            image: "images/gbengkel3.jpg",
+            image: "gbengkel3.jpg",
         },
         {
             roomName: "Gudang",
             category: "Ruang Alat",
             location: "Lantai 3",
             description: "Tempat menyimpan alat-alat/arsip-arsip",
-            image: "images/ggudang3.jpg",
+            image: "ggudang3.jpg",
         },
         {
             roomName: "Ruang 7606",
             category: "Ruang Kelas",
             location: "Lantai 3",
             description: "Tempat untuk melaksanakan pertemuan kuliah",
-            image: "images/g7606.png",
+            image: "g7606.png",
         },
         {
             roomName: "Gudang",
             category: "Ruang Alat",
             location: "Lantai 3",
             description: "Tempat untuk Mahasiswa melakukan praktikum",
-            image: "images/ggudang33.jpg",
+            image: "ggudang33.jpg",
         },
         {
             roomName: "Lab MIC",
             category: "Lab",
             location: "Lantai 3",
             description: "Tempat untuk melaksanakan pertemuan kuliah",
-            image: "images/glabmic3.jpg",
+            image: "glabmic3.jpg",
         },
         {
             roomName: "Lab Dasar",
             category: "Lab",
             location: "Lantai 3",
             description: "Tempat untuk Mahasiswa melakukan praktikum",
-            image: "images/glabdasar3.jpg",
+            image: "glabdasar3.jpg",
         },
         {
             roomName: "Ruang Dosen",
             category: "Office",
             location: "Lantai 3",
             description: "Tempat dosen bekerja",
-            image: "images/gruangdosen33.jpg",
+            image: "gruangdosen33.jpg",
         },
         {
             roomName: "Lab Sistem Informatika",
             category: "Lab",
             location: "Lantai 3",
             description: "Tempat untuk Mahasiswa melakukan praktikum",
-            image: "images/glabsisteminformatika3.jpg",
+            image: "glabsisteminformatika3.jpg",
         },
         {
             roomName: "Ruang Diskusi",
             category: "Ruang Umum",
             location: "Lantai 3",
             description: "Tempat untuk melaksanakan diskusi",
-            image: "images/gruangdiskusi3.jpg",
+            image: "gruangdiskusi3.jpg",
         },
         {
             roomName: "Mushola",
             category: "Mushola",
             location: "Lantai 3",
             description: "Tempat beribadah bagi umat muslim",
-            image: "images/9304.jpg",
+            image: "9304.jpg",
         },
         {
             roomName: "Ruang 7607",
             category: "Ruang Kelas",
             location: "Lantai 3",
             description: "Tempat untuk melaksanakan pertemuan kuliah",
-            image: "images/g7607.jpg",
+            image: "g7607.jpg",
         },
         {
             roomName: "Ruang 7608",
             category: "Ruang Kelas",
             location: "Lantai 3",
             description: "Tempat untuk melaksanakan pertemuan kuliah",
-            image: "images/g7608.jpg",
+            image: "g7608.jpg",
         },
         {
             roomName: "Ruang 7609",
             category: "Ruang Kelas",
             location: "Lantai 3",
             description: "Tempat untuk melaksanakan pertemuan kuliah",
-            image: "images/g7609.png",
+            image: "g7609.png",
         },
         {
             roomName: "Ruang 7610",
             category: "Ruang Kelas",
             location: "Lantai 3",
             description: "Tempat untuk melaksanakan pertemuan kuliah",
-            image: "images/g7610.png",
+            image: "g7610.png",
         },
         {
             roomName: "Ruang Pengembangan Kompetensi Mahasiswa",
             category: "Ruang Umum",
             location: "Lantai 3",
             description: "Tempat untuk melaksanakan pertemuan kuliah",
-            image: "images/gruangpengembangankompetensimahasiswa.jpg",
+            image: "gruangpengembangankompetensimahasiswa.jpg",
         },
         {
             roomName: "Lab Sister",
             category: "Lab",
             location: "Lantai 4",
             description: "Tempat untuk Mahasiswa melakukan praktikum",
-            image: "images/glabsister4.png",
+            image: "glabsister4.png",
         },
         {
             roomName: "Ruang Server",
             category: "Ruang Alat",
             location: "Lantai 4",
             description: "Tempat menyimpan server",
-            image: "images/gruangserver4.jpg",
+            image: "gruangserver4.jpg",
         },
         {
             roomName: "Mushola",
             category: "Mushola",
             location: "Lantai 4",
             description: "Tempat beribadah bagi umat muslim",
-            image: "images/9304.jpg",
+            image: "9304.jpg",
         },
         {
             roomName: "Lab IRK",
             category: "Lab",
             location: "Lantai 4",
             description: "Tempat untuk Mahasiswa melakukan praktikum",
-            image: "images/glabirk4.png",
+            image: "glabirk4.png",
         },
         {
             roomName: "Dapur",
             category: "Ruang Umum",
             location: "Lantai 4",
             description: "Tempat memasak",
-            image: "images/gdapur4.jpg",
+            image: "gdapur4.jpg",
         },
         {
             roomName: "Lab LPL",
             category: "Lab",
             location: "Lantai 4",
             description: "Tempat untuk melaksanakan pertemuan kuliah",
-            image: "images/glablpl4.jpg",
+            image: "glablpl4.jpg",
         },
         {
             roomName: "Ruang Diskusi",
             category: "Ruang Umum",
             location: "Lantai 4",
             description: "Tempat untuk melaksanakan diskusi",
-            image: "images/gruangdiskusi4.jpg",
+            image: "gruangdiskusi4.jpg",
         },
         {
             roomName: "Lab Dasar",
             category: "Lab",
             location: "Lantai 4",
             description: "Tempat untuk Mahasiswa melakukan praktikum",
-            image: "images/glabdasar4.jpg",
+            image: "glabdasar4.jpg",
         },
         {
             roomName: "HMS",
             category: "Himpunan",
             location: "Lantai 4",
             description: "Tempat untuk mahasiswa himpunan HMIF berkumpul",
-            image: "images/ghms4.jpg",
+            image: "ghms4.jpg",
         },
         {
             roomName: "Gudang",
             category: "Ruang Alat",
             location: "Lantai 4",
             description: "Tempat menyimpan alat-alat/arsip-arsip",
-            image: "images/ggudang4.jpg",
+            image: "ggudang4.jpg",
         },
         {
             roomName: "Ruang Rapat",
             category: "Ruang Umum",
             location: "Lantai 4",
             description: "Tempat untuk melakukan rapat",
-            image: "images/gruangrapat4.png",
+            image: "gruangrapat4.png",
         },
         {
             roomName: "Tata Usaha (TU)",
             category: "Office",
             location: "Lantai 4",
             description: "Tempat mengurus administrasi dan tata usaha",
-            image: "images/gtu4.jpg",
+            image: "gtu4.jpg",
         },
         {
             roomName: "Ruang Multimedia",
             category: "Ruang Alat",
             location: "Lantai 4",
             description: "Tempat alat-alat multimedia",
-            image: "images/gruangmultimedia4.jpg",
+            image: "gruangmultimedia4.jpg",
         },
         {
             roomName: "Lab GAIB",
             category: "Lab",
             location: "Lantai 4",
             description: "Digunakan Mahasiswa untuk Praktikum",
-            image: "images/glabgaib4.png",
+            image: "glabgaib4.png",
         },
         {
             roomName: "Ruang Residensi S3",
             category: "Ruang Mahasiswa",
             location: "Lantai 4",
             description: "Digunakan oleh Mahasiswa S3",
-            image: "images/gruangresidensis34.jpg",
+            image: "gruangresidensis34.jpg",
         },
 
     ],
@@ -515,178 +519,187 @@ let rooms = {
             category: "Ruang Umum",
             location: "Lantai 1",
             description: "Ruang Serbaguna",
-            image: "images/kmultipurposehall1.jpg",
+            image: "kmultipurposehall1.jpg",
         },
         {
             roomName: "Kantor Staff",
             category: "Office",
             location: "Lantai 1",
             description: "Tempat staff bekerja",
-            image: "images/koffice1.jpg",
+            image: "koffice1.jpg",
         },
         {
             roomName: "Toilet",
             category: "Toilet",
             location: "Lantai 1",
             description: "Tersedia toilet untuk Laki-laki, wanita, dan penyandang disabilitas",
-            image: "images/ktoilet1.jpg",
+            image: "ktoilet1.jpg",
         },
         {
             roomName: "Lift",
             category: "Lift",
             location: "Lantai 1",
             description: "Sarana berpindah lantai",
-            image: "images/klift1.jpg",
+            image: "klift1.jpg",
         },
         {
             roomName: "Internet Plaza",
             category: "Ruang Umum",
             location: "Lantai 1",
             description: "Tempat praktikum komputasi",
-            image: "images/ginternetplaza1.jpg",
+            image: "ginternetplaza1.jpg",
         },
         {
             roomName: "KOICA Co-Working Space",
             category: "Co-Working Space",
             location: "Lantai 1",
             description: "Tempat belajar dan berdiskusi untuk mahasiswa STEI ITB",
-            image: "images/kcoworkingspace1.jpg",
+            image: "kcoworkingspace1.jpg",
         },
         {
             roomName: "Kantin",
             category: "Kantin",
             location: "Lantai 1",
             description: "Tempat membeli makanan, minuman, dan snack",
-            image: "images/kkantin1.jpg",
+            image: "kkantin1.jpg",
         },
         {
             roomName: "Mushola",
             category: "Mushola",
             location: "Lantai 2",
             description: "Tempat beribadah bagi umat muslim",
-            image: "images/kmushola2.jpg",
+            image: "kmushola2.jpg",
         },
         {
             roomName: "Toilet",
             category: "Toilet",
             location: "Lantai 2",
             description: "Tersedia toilet untuk Laki-laki, wanita, dan penyandang disabilitas",
-            image: "images/ktoilet2.jpg",
+            image: "ktoilet2.jpg",
         },
         {
             roomName: "Lift",
             category: "Lift",
             location: "Lantai 2",
             description: "Sarana berpindah lantai",
-            image: "images/klift2.jpg",
+            image: "klift2.jpg",
         },
         {
             roomName: "Seminar",
             category: "Ruang Kelas",
             location: "Lantai 2",
             description: "Tempat untuk melaksanakan pertemuan kuliah",
-            image: "images/kseminar2.jpg",
+            image: "kseminar2.jpg",
         },
         {
             roomName: "Lecture Room",
             category: "Ruang Kelas",
             location: "Lantai 2",
             description: "Tempat untuk melaksanakan pertemuan kuliah",
-            image: "images/klectureroom2.jpg",
+            image: "klectureroom2.jpg",
         },
         {
             roomName: "Ruang Dosen",
             category: "Office",
             location: "Lantai 2",
             description: "Tempat dosen bekerja",
-            image: "images/kruangdosen2.jpg",
+            image: "kruangdosen2.jpg",
         },
         {
             roomName: "Ruang Manajemen STEI",
             category: "Office",
             location: "Lantai 3",
             description: "Tempat mengurus manajemen STEI",
-            image: "images/kruangmanajemenstei3.jpg",
+            image: "kruangmanajemenstei3.jpg",
         },
         {
             roomName: "Executive Director's Room",
             category: "Office",
             location: "Lantai 3",
             description: "Tempat Staff Executive Director STEI",
-            image: "images/kexecutivedirectorsroom3.jpg",
+            image: "kexecutivedirectorsroom3.jpg",
         },
         {
             roomName: "Lab Blockchain",
             category: "Lab",
             location: "Lantai 3",
             description: "Tempat untuk melakukan penelitian",
-            image: "images/klabblockchain3.jpg",
+            image: "klabblockchain3.jpg",
         },
         {
             roomName: "Toilet",
             category: "Toilet",
             location: "Lantai 3",
             description: "Tersedia toilet untuk Laki-laki, wanita, dan penyandang disabilitas",
-            image: "images/ktoilet3.jpg",
+            image: "ktoilet3.jpg",
         },
         {
             roomName: "Lift",
             category: "Lift",
             location: "Lantai 3",
             description: "Sarana berpindah lantai",
-            image: "images/klift3.jpg",
+            image: "klift3.jpg",
         },
         {
             roomName: "Ruang Residensi S2 & TA S1",
             category: "Ruang Mahasiswa",
             location: "Lantai 3",
             description: "Tempat residensi bagi mahasiswa S2 & TA S1",
-            image: "images/kresidensi3.jpg",
+            image: "kresidensi3.jpg",
         },
         {
             roomName: "Ruang Residensi S3",
             category: "Ruang Mahasiswa",
             location: "Lantai 3",
             description: "Digunakan oleh mahasiswa S3",
-            image: "images/kresidensis32.jpg",
+            image: "kresidensis32.jpg",
         },
         {
             roomName: "Ruang Mitra Kerjasama",
             category: "Office",
             location: "Lantai 3",
             description: "Tempat untuk melaksanakan meeting dengan mitra kerja",
-            image: "images/kmitrakerjasama3.jpg",
+            image: "kmitrakerjasama3.jpg",
         },
         {
             roomName: "Lab Malware",
             category: "Lab",
             location: "Lantai 3",
             description: "Tempat untuk melakukan penelitian",
-            image: "images/klabmalware3.jpg",
+            image: "klabmalware3.jpg",
         },
         {
             roomName: "Lab Forensik Digital",
             category: "Lab",
             location: "Lantai 3",
             description: "Tempat untuk melakukan penelitian",
-            image: "images/klabforensikdigital.jpg",
+            image: "klabforensikdigital.jpg",
         },
         {
             roomName: "Lab Penetration Test",
             category: "Lab",
             location: "Lantai 3",
             description: "Tempat untuk melakukan penelitian",
-            image: "images/klabpenetrationtest3.jpg",
+            image: "klabpenetrationtest3.jpg",
         },
         {
             roomName: "Ruang Server",
             category: "Ruang Alat",
             location: "Lantai 3",
             description: "Tempat untuk menyimpan server",
-            image: "images/kruangserver3.jpg",
+            image: "kruangserver3.jpg",
         },
     ]
 };
+
+function toggleBuildingSelector(buildings) {
+    const buildingSelector = document.querySelector("#buildingSelector");
+    if (buildings == "labtekv") {
+        buildingSelector.innerHTML = `<a class="building-btn active">LABTEK V</a><a href="#koica" class="building-btn">KOICA</a><br>`;
+    } else if (buildings == "koica") {
+        buildingSelector.innerHTML = `<a href="#labtekv" class="building-btn">LABTEK V</a><a class="building-btn active">KOICA</a><br>`;
+    }
+}
 
 function populateSearch(i) {
     let cardcontainer = document.createElement("article");
@@ -705,31 +718,48 @@ function populateSearch(i) {
     let description = document.createElement("p");
     description.innerText = `Kategori: ${i.category}\nLokasi: ${i.location}\n\n${i.description}`;
     container.appendChild(description);
+    
+
+    if (building == "labtekv" && parseInt(i.location.split(" ")[1]) > 1) {
+        let map = document.createElement("a");
+        map.innerText = "Lihat Peta";
+        map.setAttribute("data-fancybox", (Math.random()*10**16).toString());
+        map.setAttribute("data-src", `images/LabtekVLantai${i.location.split(" ")[1]}.jpg`);
+        container.appendChild(map);
+    }
+
     card.appendChild(container);
 
     let imgContainer = document.createElement("div");
     imgContainer.classList.add("visual");
 
-    let image = document.createElement("img");
-    image.setAttribute("src", i.image);
-    imgContainer.appendChild(image);
-    card.appendChild(imgContainer);
+    let fancyboxContainer = document.createElement("a");
+    fancyboxContainer.setAttribute("data-fancybox", "rooms");
+    fancyboxContainer.setAttribute("data-caption", i.roomName);
+    fancyboxContainer.setAttribute("data-src", `images/${i.image}`);
 
-    document.getElementById("rooms").appendChild(cardcontainer);
+    let image = document.createElement("img");
+    image.setAttribute("src", `images/${i.image}`);
+    
+    fancyboxContainer.appendChild(image);
+    imgContainer.appendChild(fancyboxContainer);
+    card.appendChild(imgContainer);
+    s("#rooms").appendChild(cardcontainer);
 }
 
-function searchRoom(queryName, categoryName="") {
+function searchRoom() {
     document.getElementById("rooms").innerHTML = "";
+    var roomCount = 0;
     for(let i of rooms[building]) {
-        if (i.roomName.toLowerCase().indexOf(queryName.toLowerCase()) > -1 && (categoryName == "" ? true : i.category == categoryName)) {
+        if (i.roomName.toLowerCase().indexOf(s("#search-input").value.toLowerCase()) > -1 && (activeFilter == "" ? true : i.category == activeFilter)) {
             populateSearch(i);
+            roomCount += 1;
         }
     }
+    s("#roomCount").innerText = `${roomCount > 0 ? roomCount : "No"} room${roomCount > 1 ? "s" : ""} found`;
 }
 
-searchInput.addEventListener("input", function(){
-    searchRoom(searchInput.value, activeFilter);
-});
+s("#search-input").addEventListener("input", searchRoom);
 
 searchFilter.forEach(filterbtn => {
     filterbtn.addEventListener("click", function(){
@@ -741,7 +771,7 @@ searchFilter.forEach(filterbtn => {
                 }
             });
             activeFilter = "";
-            searchRoom(searchInput.value, activeFilter)
+            searchRoom();
         } else {
             document.getElementById("rooms").innerHTML = "";
             searchFilter.forEach(activefilter => {
@@ -751,15 +781,19 @@ searchFilter.forEach(filterbtn => {
             });
             filterbtn.classList.add("active");
             activeFilter = filterbtn.dataset.filter;
-            for(let i of rooms[building]) {
-                if (i.category == filterbtn.dataset.filter) {
-                    populateSearch(i);
-                }
-            }
+            searchRoom();
         }
     });
 });
 
-window.addEventListener("load", function(){
-    searchRoom(searchInput.value);
+window.addEventListener("load", () => {
+    toggleBuildingSelector(building);
+    searchRoom();
 });
+
+window.onhashchange = () => {
+    building = window.location.hash.slice(1);
+    toggleBuildingSelector(building);
+    searchRoom();
+};
+  

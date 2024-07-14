@@ -71,8 +71,7 @@ nav{
    text-align: center;
 }
 
- .labtek-btn,
- .koica-btn {
+ .building-btn{
    display: inline-block;
    text-decoration: none;
    color: #F6F4EB;
@@ -85,14 +84,12 @@ nav{
    margin: 10px;
  }
 
- .labtek-btn.active,
- .koica-btn.active {
+ .building-btn.active {
    border: 1px solid #749BC2;
    background: #749BC2;
  }
 
- .labtek-btn:hover, 
- .koica-btn:hover{
+ .building-btn:hover{
    border: 1px solid #749BC2;
    background: #749BC2;
    transition: 1s;
@@ -267,7 +264,12 @@ h1{
    justify-content: center;
 }
 
-.buildings-col img{
+.buildings-col a{
+   height: 100%;
+   cursor: zoom-in;
+}
+
+.buildings-col a img{
    width: 100%;
    transition: transform 0.5s;
 }
@@ -334,6 +336,7 @@ h1{
    cursor: pointer;
    margin-left: 13vw;
    margin-right: 13vw;
+   text-align: center;
 }
 
 .direction-btn:hover{
@@ -427,6 +430,10 @@ h1{
    color: #749BC2;
 }
  
+#roomCount {
+   text-align: center;
+}
+
 *,
 *:before,
 *:after {
@@ -443,7 +450,7 @@ section.card {
   background: -webkit-linear-gradient(to right, #749BC2, #2d2d43); 
   background: linear-gradient(to right, #749BC2, #2d2d43);
   border-radius: 24px 24px 24px 48px;
-  padding: 48px 48px 0px 400px;
+  padding: 48px 48px 20px 400px;
   margin: 84px 84px;
   min-width: 640px;
   display: flex;
@@ -475,9 +482,10 @@ section.card .text-content a {
   padding: 16px 32px;
   border-radius: 12px;
   transition: 400ms all;
+  cursor: pointer;
 }
 section.card .text-content a:hover {
-  background: #051c5e;
+  background: #2a2e39;
   color: white;
 }
 section.card .visual {
@@ -488,10 +496,13 @@ section.card .visual {
   left: 24px;
   overflow: hidden;
   border-radius: 24px;
+  cursor: zoom-in;
 }
 section.card .visual img {
   height: 100%;
   border-radius: 24px;
+  width: 300px;
+  object-fit: cover;
 }
 article {
   margin: auto;

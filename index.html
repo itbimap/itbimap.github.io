@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" manifest="/cache.manifest">
 <head>
+    <meta name="robots" content="none" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -10,21 +11,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;700;900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/9731502187.js" crossorigin="anonymous"></script>
     <title>iMAP</title>
-    <link rel="shortcut icon" href="images/logofavicon.png" type="x-icon">
-    <link rel="stylesheet" href="https://stackpath.bootstrap.com/font-awesome/6.4.2/css/font-awesome.min.css">
+    <link rel="icon" href="images/logofavicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css">
+    <link href="jquery.fancybox.min.css" rel="stylesheet">
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="jquery.fancybox.min.js"></script>
 </head>
 <body>
 <!-- HEADER -->
     <section class="header" id="home">
         <nav>
-            <img class="logoatas" src="images/logokecil.png" alt="logo" width="72" height="40">
+            <a href="/"><img class="logoatas" src="images/logokecil.png" alt="logo" width="72" height="40"></a>
             <div class="hamburger">
                 <div class="line1"></div>
                 <div class="line2"></div>
                 <div class="line3"></div>
             </div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
+                <li><a>Home</a></li>
                 <li><a href="#buildings">Buildings</a></li>
             </ul>
         </nav>
@@ -32,8 +36,8 @@
         <div class="text-box">
             <img class="logobesar" src="images/logobesar.png" alt="logo" width="360" height="180">
             <p>Tujuan utama dari iMap (Interactive Map Interface) adalah membantu civitas kampus, seperti mahasiswa, staf, dan pengunjung untuk dengan mudah menavigasi area kampus ITB, yang dikhususkan kepada warga STEI ITB. Peta tersebut menyajikan lokasi dan informasi penting seperti gedung-gedung, fasilitas umum, ruang kuliah, laboratorium, area parkir, dan tempat istirahat yang berada Labtek V ITB Ganesha dan Gedung KOICA ITB Jatinangor dengan jelas dan mudah dipahami.</p>
-                <a href="labtekv.html" class="labtek-btn">LABTEK V</a>
-                <a href="koica.html" class="koica-btn">KOICA</a>
+                <a href="finder.html#labtekv" class="building-btn">LABTEK V</a>
+                <a href="finder.html#koica" class="building-btn">KOICA</a>
         </div>
 
 <!-- BUILDINGS -->
@@ -42,20 +46,24 @@
         <p>Terdapat dua gedung yang tersedia pada website ini, yaitu Labtek V (ITB Ganesha) & KOICA (ITB Jatinangor).</p>
         <div class="buildings-row">
             <div class="buildings-col">
-                <img src="images/labtekv.jpg" alt="Labtek V">
-                <div class="layer">
-                    <h3>LABTEK V<br>ITB GANESHA</h3>
-                </div>
+                <a data-fancybox="map" data-src="images/PetaLabtekV.jpg">
+                    <img src="images/labtekv.jpg" alt="Labtek V">
+                    <div class="layer">
+                        <h3>LABTEK V<br>ITB GANESHA</h3>
+                    </div>
+                </a>
             </div>
             <div class="buildings-col">
-                <img src="images/koica.png" alt="Labtek V">
-                <div class="layer">
-                    <h3>KOICA<br>ITB JATINANGOR</h3>
-                </div>
+                <a data-fancybox="map" data-src="images/PetaKoica.png">
+                    <img src="images/koica.png" alt="Labtek V">
+                    <div class="layer">
+                        <h3>KOICA<br>ITB JATINANGOR</h3>
+                    </div>
+                </a>
             </div>
         </div>
-        <a href="https://g.co/kgs/mg16wD" class="direction-btn" target="_blank">See Direction</a>
         <a href="https://g.co/kgs/XyrqoX" class="direction-btn" target="_blank">See Direction</a>
+        <a href="https://g.co/kgs/mg16wD" class="direction-btn" target="_blank">See Direction</a>
     </section>
 
 
@@ -65,7 +73,8 @@
         <p>Kami dari Milestone Kelompok 7 ingin membantu mahasiswa baru untuk dengan mudah menemukan dan mengakses berbagai fasilitas di kampus, seperti ruang kelas, toilet, musholla, dan lain-lain, guna meningkatkan efisiensi waktu dan penggunaan fasilitas.</p>
         <p>Made with <i class="fa-regular fa-heart"></i> by Kelompok 07</p>
     </section>
-
-    <script src="app.js"></script>
+    <script>
+        $.fancybox.defaults.hash = false;
+    </script>
 </body>
 </html>
